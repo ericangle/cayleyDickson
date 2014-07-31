@@ -1,4 +1,4 @@
-
+# Calculates total length of nested list
 def listLen(myList):
   if isinstance(myList, (int, long, float)):
     return 1
@@ -9,6 +9,7 @@ def listLen(myList):
     return sum
 
 # Addition
+# (a,b)+(c,d) = (a+c,b+d)
 def add(list1,list2):
   if listLen(list1) == 1:
     return list1 + list2
@@ -16,6 +17,7 @@ def add(list1,list2):
     return [list1[i]+list2[i] for i in xrange(len(list1))]
 
 # Subtraction
+# (a,b)-(c,d) = (a-c,b-d)
 def sub(list1,list2):
   if listLen(list1) == 1:
     return list1 - list2
@@ -41,6 +43,7 @@ def mult(list1,list2):
     return total
 
 # Conjugation
+# (a,b)* = (a*,-b)
 def conj(myList):
   length = listLen(myList)
   if length == 1:
