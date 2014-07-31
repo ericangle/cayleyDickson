@@ -61,7 +61,6 @@ def conj(myList):
 
 A1 = list()
 A2 = list()
-A3 = list()
 
 A1.append(1)
 A1.append(2)
