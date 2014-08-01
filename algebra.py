@@ -1,3 +1,34 @@
+# make a pretty print function at some point
+
+def complex(a,b):
+# check that a and b are numbers not lists
+  myComplex = list()
+  myComplex.append(a)
+  myComplex.append(b)
+  return myComplex
+
+def quat(a,b,c,d):
+# check that a and b are complex numbers
+  myQuat = list()
+  myComplex1 = list()
+  myComplex2 = list()
+  myComplex1.append(a)
+  myComplex1.append(b)
+  myComplex2.append(c)
+  myComplex2.append(d)
+  myQuat.append(myComplex1)
+  myQuat.append(myComplex2)
+  return myQuat
+
+#def quat(a,b,c,d):
+# check that abcd are numbers not lists
+#  myQuat = list()
+#  myQuat.append(a)
+#  myQuat.append(b)
+#  myQuat.append(c)
+#  myQuat.append(d)
+#  return myQuat
+
 # Calculates total length of nested list
 def listLen(myList):
   if isinstance(myList, (int, long, float)):
@@ -61,18 +92,3 @@ def conj(myList):
     result.append(left)
     result.append(right)
     return result
-
-A1 = list()
-A2 = list()
-
-A1.append(1)
-A1.append(2)
-
-A2.append(3)
-A2.append(4)
-
-print "[1,2] + [3,4] = " + str(add(A1,A2))
-print "[1,2] - [3,4] = " + str(sub(A1,A2))
-print "[1,2]* = " + str(conj(A1))
-print "[3,4]* = " + str(conj(A2))
-print "[1,2][3,4] = " + str(mult(A1,A2))
