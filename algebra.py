@@ -64,6 +64,10 @@ def mult(list1,list2):
     total.append(right)
     return total
 
+# Division
+# a / b = ab* / (bb*)
+# def div(list1,list2)
+
 # Conjugation
 # (a,b)* = (a*,-b)
 def conj(myList):
