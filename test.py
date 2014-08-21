@@ -48,13 +48,13 @@ nTrueQ = nTrueQ + (algebra.sub(Q1,Q2) == algebra.quat(1-5,2-6,3-7,4-8))
 nTrueQ = nTrueQ + (algebra.conj(Q1) == algebra.quat(1,-2,-3,-4))
 
 # Test 4: Multiplication
-E0 = algebra.quat(1,0,0,0)
+E0  = algebra.quat(1,0,0,0)
 nE0 = algebra.quat(-1,0,0,0)
-E1 = algebra.quat(0,1,0,0)
+E1  = algebra.quat(0,1,0,0)
 nE1 = algebra.quat(0,-1,0,0)
-E2 = algebra.quat(0,0,1,0)
+E2  = algebra.quat(0,0,1,0)
 nE2 = algebra.quat(0,0,-1,0)
-E3 = algebra.quat(0,0,0,1)
+E3  = algebra.quat(0,0,0,1)
 nE3 = algebra.quat(0,0,0,-1)
 
 for i in xrange(4):
@@ -68,18 +68,12 @@ for i in xrange(4):
       nTrueQ = nTrueQ + (q3 == algebra.quat(j==0,j==1,j==2,j==3))
     elif (j == 0):
       nTrueQ = nTrueQ + (q3 == algebra.quat(i==0,i==1,i==2,i==3))
-    if (i == 2 and j == 1):
-      nTrueQ = nTrueQ + (q3 == nE3)
-    if (i == 3 and j == 1):
-      nTrueQ = nTrueQ + (q3 == E2)
-    if (i == 3 and j == 2):
-      nTrueQ = nTrueQ + (q3 == nE1)
-    if (i == 1 and j == 2):
-      nTrueQ = nTrueQ + (q3 == E3)
-    if (i == 1 and j == 3):
-      nTrueQ = nTrueQ + (q3 == nE2)
-    if (i == 2 and j == 3):
-      nTrueQ = nTrueQ + (q3 == E1)
+    nTrueQ = nTrueQ + (i == 2 and j == 1)*(q3 == nE3)
+    + (i == 3 and j == 1)*(q3 == E2)
+    + (i == 3 and j == 2)*(q3 == nE1)
+    + (i == 1 and j == 2)*(q3 == E3)
+    + (i == 1 and j == 3)*(q3 == nE2)
+    + (i == 2 and j == 3)*(q3 == E1)
 
 # Results
 if (nTrueQ == nTestsQ):
@@ -90,4 +84,3 @@ else:
 ############
 # Octonion #
 ############
-
