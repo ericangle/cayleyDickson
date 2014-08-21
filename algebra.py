@@ -20,15 +20,6 @@ def quat(a,b,c,d):
   myQuat.append(myComplex2)
   return myQuat
 
-#def quat(a,b,c,d):
-# check that abcd are numbers not lists
-#  myQuat = list()
-#  myQuat.append(a)
-#  myQuat.append(b)
-#  myQuat.append(c)
-#  myQuat.append(d)
-#  return myQuat
-
 # Calculates total length of nested list
 def listLen(myList):
   if isinstance(myList, (int, long, float)):
@@ -45,7 +36,7 @@ def add(list1,list2):
   if listLen(list1) == 1:
     return list1 + list2
   else:
-    return [list1[i]+list2[i] for i in xrange(len(list1))]
+    return [add(list1[i],list2[i]) for i in xrange(len(list1))]
 
 # Subtraction
 # (a,b)-(c,d) = (a-c,b-d)
@@ -53,7 +44,7 @@ def sub(list1,list2):
   if listLen(list1) == 1:
     return list1 - list2
   else:
-    return [list1[i]-list2[i] for i in xrange(len(list1))]
+    return [sub(list1[i],list2[i]) for i in xrange(len(list1))]
 
 # Multiplication
 # (a,b)(c,d) = (ac-db*,a*d+bc)
