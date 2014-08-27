@@ -87,6 +87,7 @@ for i in xrange(4):
     nTrueQ = nTrueQ + (i == 2 and j == 1)*(q3 == nE3) + (i == 3 and j == 1)*(q3 == E2) + (i == 3 and j == 2)*(q3 == nE1) + (i == 1 and j == 2)*(q3 == E3) + (i == 1 and j == 3)*(q3 == nE2) + (i == 2 and j == 3)*(q3 == E1)
 
 # Test 6: Division
+#nTrueQ = nTrueQ + (algebra.div(Q1,Q2) == algebra.quat(place,holder,for,now))
 
 # Results
 if (nTrueQ == nTestsQ):
@@ -117,8 +118,10 @@ nTrueO = nTrueO + (algebra.conj(O1) == algebra.octon(1,-2,-3,-4,-5,-6,-7,-8))
 nTrueO = nTrueO + (algebra.mod(O1) == pow(sum (pow(i,2.0) for i in range(1,8+1)),0.5) )
 
 # Test 5: Multiplication
+# add 8x8 mult table
 
 # Test 6: Division
+#nTrueO = nTrueO + (algebra.div(O1,O2) == algebra.quat(place,holder,for,now))
 
 # Results
 if (nTrueO == nTestsO):
