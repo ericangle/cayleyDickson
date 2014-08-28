@@ -1,47 +1,24 @@
 # make a pretty print function at some point
 
-def complex(a,b):
-# check that a and b are numbers not lists
-  myComplex = list()
-  myComplex.append(a)
-  myComplex.append(b)
-  return myComplex
+import math
 
-def quat(a,b,c,d):
-  myQuat = list()
-  myComplex1 = list()
-  myComplex2 = list()
-  myComplex1.append(a)
-  myComplex1.append(b)
-  myComplex2.append(c)
-  myComplex2.append(d)
-  myQuat.append(myComplex1)
-  myQuat.append(myComplex2)
-  return myQuat
-
-def octon(a,b,c,d,e,f,g,h):
-  myOcton = list()
-  myQuat1 = list()
-  myQuat2 = list()
-  myComplex1 = list()
-  myComplex2 = list()
-  myComplex3 = list()
-  myComplex4 = list()
-  myComplex1.append(a)
-  myComplex1.append(b)
-  myComplex2.append(c)
-  myComplex2.append(d)
-  myComplex3.append(e)
-  myComplex3.append(f)
-  myComplex4.append(g)
-  myComplex4.append(h)
-  myQuat1.append(myComplex1)
-  myQuat1.append(myComplex2)
-  myQuat2.append(myComplex3)
-  myQuat2.append(myComplex4)
-  myOcton.append(myQuat1)
-  myOcton.append(myQuat2)
-  return myOcton
+def alg(nums):
+  powerOfTwo = math.log(len(nums))/math.log(2)
+  if powerOfTwo != int(powerOfTwo):
+    print "number list must be a length that is a power of 2"
+    return 0
+  elif len(nums) == 2:
+    temp = list()
+    temp.append(nums[0])
+    temp.append(nums[1])
+    return temp
+  else:
+    temp = list()
+    temp1 = alg(nums[:len(nums)/2])
+    temp2 = alg(nums[len(nums)/2:])
+    temp.append(temp1)
+    temp.append(temp2)
+    return temp
 
 # Calculates total length of nested list
 def listLen(myList):
@@ -101,13 +78,11 @@ def mod(myList):
 # def div(list1,list2)
 def div(list1,list2):
   modSqList2 = pow(mod(list2),2.0)
-  invModSqList2 = list()
-  if listLen(list1) == 2:
-    invModSqList2 = complex(1.0/modSqList2,0.0)
-  if listLen(list1) == 4:
-    invModSqList2 = quat(1.0/modSqList2,0,0,0)
-  if listLen(list1) == 8:
-    invModSqList2 = octon(1.0/modSqList2,0.0)
+  temp = list()
+  temp.append(1.0/modSqList2)
+  for i in range(1,listLen(list1)):
+    temp.append(0.0)
+  invModSqList2 = alg(temp)
   return mult(mult(list1,conj(list2)),invModSqList2)
 
 # Conjugation
@@ -118,13 +93,12 @@ def conj(myList):
   else:
     left = conj(myList[0])
     if listLen(left) == 1:
-      zeroes = 0
-    elif listLen(left) == 2:
-      zeroes = list()
-      zeroes = complex(0,0)
-    elif listLen(left) == 4:
-      zeroes = list()
-      zeroes = quat(0,0,0,0)
+      zeroes = 0.0
+    else:
+      temp = list()
+      for i in xrange(listLen(left)):
+        temp.append(0.0)
+      zeroes = alg(temp) 
     right = sub(zeroes,myList[1])
     result = list()
     result.append(left)
