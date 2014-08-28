@@ -1,6 +1,7 @@
 # TO DO
 # 1. Can I make the tests recursive as in the
 #    algebra.alg function?
+# 2. Division for quat and oct
 
 import algebra
 
