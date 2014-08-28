@@ -14,10 +14,8 @@ def alg(nums):
     return temp
   else:
     temp = list()
-    temp1 = alg(nums[:len(nums)/2])
-    temp2 = alg(nums[len(nums)/2:])
-    temp.append(temp1)
-    temp.append(temp2)
+    temp.append(alg(nums[:len(nums)/2]))
+    temp.append(alg(nums[len(nums)/2:]))
     return temp
 
 # Calculates total length of nested list
