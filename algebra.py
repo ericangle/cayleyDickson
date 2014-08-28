@@ -1,7 +1,11 @@
-# make a pretty print function at some point
+# TO DO
+# 1. make a pretty print function at some point
+# 2. modulus function is not general
 
 import math
 
+# Returns list nums as nested lists as
+# in the Cayley Dickson construction
 def alg(nums):
   powerOfTwo = math.log(len(nums))/math.log(2)
   if powerOfTwo != int(powerOfTwo):
@@ -18,7 +22,7 @@ def alg(nums):
     temp.append(alg(nums[len(nums)/2:]))
     return temp
 
-# Calculates total length of nested list
+# Calculates total length of a nested list
 def listLen(myList):
   if isinstance(myList, (int, long, float)):
     return 1
@@ -73,7 +77,6 @@ def mod(myList):
 
 # Division
 # a / b = ab* / (bb*)
-# def div(list1,list2)
 def div(list1,list2):
   modSqList2 = pow(mod(list2),2.0)
   temp = list()

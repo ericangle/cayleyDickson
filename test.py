@@ -1,3 +1,7 @@
+# TO DO
+# 1. Can I make the tests recursive as in the
+#    algebra.alg function?
+
 import algebra
 
 print " "
