@@ -1,12 +1,17 @@
 # TO DO
 # 1. make a pretty print function at some point
 # 2. modulus function is not general
+# 3. All functions should check that list1.len ==
+#    list2.len, or should promote the shorter one
+#    to the length of the longer one, i.e. complex
+#    becomes a quaternion, octonion, etc.
 
 import math
 
 # Returns list nums as nested lists as
 # in the Cayley Dickson construction
 def alg(nums):
+  # powerOfTwo = 1,2,3,... = complex,quaternion,octonion,...
   powerOfTwo = math.log(len(nums))/math.log(2)
   if powerOfTwo != int(powerOfTwo):
     print "number list must be a length that is a power of 2"
