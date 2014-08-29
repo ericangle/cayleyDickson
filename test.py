@@ -1,7 +1,7 @@
 # TO DO
 # 1. Can I make the tests recursive as in the
 #    algebra.alg function?
-# 2. Division for quat and oct
+# 2. Division for oct
 
 import algebra
 
@@ -46,7 +46,7 @@ else:
 ##############
 
 nTrueQ = 0
-nTestsQ = 4 + 4*4
+nTestsQ = 5 + 4*4
 
 Q1 = algebra.alg([1,2,3,4])
 Q2 = algebra.alg([5,6,7,8])
@@ -89,10 +89,16 @@ for i in xrange(4):
     elif (j == 0):
       nTrueQ = nTrueQ + (q3 == algebra.alg([(i==0)*1,(i==1)*1,(i==2)*1,(i==3)*1]))
     # 6 Tests: off diag with i and j not 0
-    nTrueQ = nTrueQ + (i == 2 and j == 1)*(q3 == nE3) + (i == 3 and j == 1)*(q3 == E2) + (i == 3 and j == 2)*(q3 == nE1) + (i == 1 and j == 2)*(q3 == E3) + (i == 1 and j == 3)*(q3 == nE2) + (i == 2 and j == 3)*(q3 == E1)
+    nTrueQ = nTrueQ + (i == 2 and j == 1)*(q3 == nE3)
+    nTrueQ = nTrueQ + (i == 3 and j == 1)*(q3 == E2)
+    nTrueQ = nTrueQ + (i == 3 and j == 2)*(q3 == nE1)
+    nTrueQ = nTrueQ + (i == 1 and j == 2)*(q3 == E3)
+    nTrueQ = nTrueQ + (i == 1 and j == 3)*(q3 == nE2)
+    nTrueQ = nTrueQ + (i == 2 and j == 3)*(q3 == E1)
 
 # Test 6: Division
-#nTrueQ = nTrueQ + (algebra.div(Q1,Q2) == algebra.alg(place,holder,for,now))
+modSqQ2 = pow(5.0,2.0) + pow(6.0,2.0) + pow(7.0,2.0) + pow(8.0,2.0)
+nTrueQ = nTrueQ + (algebra.div(Q1,Q2) == algebra.alg([(5+12+21+32)/modSqQ2,(-6+10-24+28)/modSqQ2,(-7+16+15-24)/modSqQ2,(-8-14+18+20)/modSqQ2]))
 
 # Results
 if (nTrueQ == nTestsQ):
