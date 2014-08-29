@@ -1,7 +1,6 @@
 # TO DO
 # 1. make a pretty print function at some point
-# 2. modulus function is not general
-# 3. All functions should check that list1.len ==
+# 2. All functions should check that list1.len ==
 #    list2.len, or should promote the shorter one
 #    to the length of the longer one, i.e. complex
 #    becomes a quaternion, octonion, etc.
@@ -73,12 +72,13 @@ def mult(list1,list2):
 # Modulus
 # |a| = (a a*)^1/2
 def mod(myList):
-  if listLen(myList) == 2:
-    return pow(mult(myList,conj(myList))[0],0.5)
-  if listLen(myList) == 4:
-    return pow(mult(myList,conj(myList))[0][0],0.5)
-  if listLen(myList) == 8:
-    return pow(mult(myList,conj(myList))[0][0][0],0.5)
+  if isinstance(myList, (int, long, float)):
+    return myList
+  else:
+    sum = 0
+    for i in xrange(len(myList)):
+      sum = sum + pow(mod(myList[i]),2.0)
+    return pow(sum,0.5)
 
 # Division
 # a / b = ab* / (bb*)
