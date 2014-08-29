@@ -63,10 +63,8 @@ def mult(list1,list2):
     b = list1[1]
     c = list2[0]
     d = list2[1]
-    left = sub(mult(a,c),mult(conj(d),b))
-    right = add(mult(d,a),mult(b,conj(c)))
-    total.append(left)
-    total.append(right)
+    total.append(sub(mult(a,c),mult(conj(d),b)))
+    total.append(add(mult(d,a),mult(b,conj(c))))
     return total
 
 # Modulus
@@ -82,14 +80,12 @@ def mod(myList):
 
 # Division
 # a / b = ab* / (bb*)
-def div(list1,list2):
-  modSqList2 = pow(mod(list2),2.0)
-  temp = list()
-  temp.append(1.0/modSqList2)
-  for i in range(1,listLen(list1)):
-    temp.append(0.0)
-  invModSqList2 = alg(temp)
-  return mult(mult(list1,conj(list2)),invModSqList2)
+def div(a,b):
+  invBBconj = list()
+  invBBconj.append(1.0/pow(mod(b),2.0))
+  for i in range(1,listLen(a)):
+    invBBconj.append(0.0)
+  return mult(mult(a,conj(b)),alg(invBBconj))
 
 # Conjugation
 # (a,b)* = (a*,-b)
@@ -97,16 +93,14 @@ def conj(myList):
   if listLen(myList) == 1:
     return myList
   else:
-    left = conj(myList[0])
-    if listLen(left) == 1:
+    if listLen(myList) == 2:
       zeroes = 0.0
     else:
-      temp = list()
-      for i in xrange(listLen(left)):
-        temp.append(0.0)
-      zeroes = alg(temp) 
-    right = sub(zeroes,myList[1])
+      zeroes = list()
+      for i in xrange(listLen(myList)/2):
+        zeroes.append(0.0)
+      zeroes = alg(zeroes)
     result = list()
-    result.append(left)
-    result.append(right)
+    result.append(conj(myList[0]))
+    result.append(sub(zeroes,myList[1]))
     return result
