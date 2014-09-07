@@ -1,6 +1,5 @@
 # TO DO
-# 1. make a pretty print function at some point
-# 2. All functions should check that list1.len ==
+# 1. All functions should check that list1.len ==
 #    list2.len, or should promote the shorter one
 #    to the length of the longer one, i.e. complex
 #    becomes a quaternion, octonion, etc.
@@ -35,6 +34,25 @@ def listLen(myList):
     for i in xrange(len(myList)):
       sum = sum + listLen(myList[i])
     return sum
+
+# Pretty print
+def prettyPrint(myList):
+  output = "[ "
+  tempList = tempPrettyPrint(myList)
+  for i in xrange(len(tempList)):
+    output = output + tempList[i] + " "
+  output = output + "]"
+  print output
+  return 0
+
+def tempPrettyPrint(myList):
+  if isinstance(myList, (int, long, float)):
+    return str(myList)
+  else:
+    output = ""
+    for i in xrange(len(myList)):
+      output = output + tempPrettyPrint(myList[i])
+    return output
 
 # Addition
 # (a,b)+(c,d) = (a+c,b+d)
