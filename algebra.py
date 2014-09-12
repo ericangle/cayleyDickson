@@ -9,21 +9,24 @@ import math
 # Returns list nums as nested lists as
 # in the Cayley Dickson construction
 def alg(nums):
-  # powerOfTwo = 1,2,3,... = complex,quaternion,octonion,...
-  powerOfTwo = math.log(len(nums))/math.log(2)
-  if powerOfTwo != int(powerOfTwo):
-    print "number list must be a length that is a power of 2"
-    return 0
-  elif len(nums) == 2:
-    temp = list()
-    temp.append(nums[0])
-    temp.append(nums[1])
-    return temp
+  if len(nums) == 1:
+    return nums[0]
   else:
-    temp = list()
-    temp.append(alg(nums[:len(nums)/2]))
-    temp.append(alg(nums[len(nums)/2:]))
-    return temp
+    # powerOfTwo = 1,2,3,... = complex,quaternion,octonion,...
+    powerOfTwo = math.log(len(nums))/math.log(2)
+    if powerOfTwo != int(powerOfTwo):
+      print "number list must be a length that is a power of 2"
+      return 0
+    elif len(nums) == 2:
+      temp = list()
+      temp.append(nums[0])
+      temp.append(nums[1])
+      return temp
+    else:
+      temp = list()
+      temp.append(alg(nums[:len(nums)/2]))
+      temp.append(alg(nums[len(nums)/2:]))
+      return temp
 
 # Calculates total length of a nested list
 def listLen(myList):

@@ -8,6 +8,40 @@ import algebra
 
 print " "
 
+########
+# Real #
+########
+
+nTrueR = 0
+nTestsR = 6
+
+R1 = algebra.alg([1])
+R2 = algebra.alg([2])
+
+# Test 1: Addition
+nTrueR = nTrueR + (algebra.add(R1,R2) == algebra.alg([1+2]))
+
+# Test 2: Subtraction
+nTrueR = nTrueR + (algebra.sub(R1,R2) == algebra.alg([1-2]))
+
+# Test 3: Conjugate
+nTrueR = nTrueR + (algebra.conj(R1) == algebra.alg([1]))
+
+# Test 4: Modulus
+nTrueR = nTrueR + (algebra.mod(R1) == 1)
+
+# Test 5: Multiplication
+nTrueR = nTrueR + (algebra.mult(R1,R2) == algebra.alg([1*2]))
+
+# Test 6: Division
+nTrueR = nTrueR + (algebra.div(R1,R2) == algebra.alg([1.0/2.0]))
+
+# Results
+if (nTrueR == nTestsR):
+  print "Real tests pass: " + str(nTrueR) + " passed out of " + str(nTestsR)
+else:
+  print "Real tests fail: " + str(nTrueR) + " passed out of " + str(nTestsR)
+
 ###########
 # Complex #
 ###########
