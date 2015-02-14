@@ -8,6 +8,9 @@ import algebra
 
 print " "
 
+numPass = 0
+numTests = 0
+
 ########
 # Real #
 ########
@@ -41,6 +44,9 @@ if (nTrueR == nTestsR):
   print "Real tests pass: " + str(nTrueR) + " passed out of " + str(nTestsR)
 else:
   print "Real tests fail: " + str(nTrueR) + " passed out of " + str(nTestsR)
+
+numPass = numPass + nTrueR
+numTests = numTests + nTestsR
 
 ###########
 # Complex #
@@ -76,6 +82,9 @@ if (nTrueC == nTestsC):
 else:
   print "Complex tests fail: " + str(nTrueC) + " passed out of " + str(nTestsC)
   
+numPass = numPass + nTrueC
+numTests = numTests + nTestsC
+
 ##############
 # Quaternion #
 ##############
@@ -141,6 +150,9 @@ if (nTrueQ == nTestsQ):
 else:
   print "Quaternion tests fail: " + str(nTrueQ) + " passed out of " + str(nTestsQ)
 
+numPass = numPass + nTrueQ
+numTests = numTests + nTestsQ
+
 ############
 # Octonion #
 ############
@@ -174,5 +186,13 @@ if (nTrueO == nTestsO):
   print "Octonion tests pass: " + str(nTrueO) + " passed out of " + str(nTestsO)
 else:
   print "Octonion tests fail: " + str(nTrueO) + " passed out of " + str(nTestsO)
+
+numPass = numPass + nTrueO
+numTests = numTests + nTestsO
+
+if (numPass == numTests):
+  print "All tests passed."
+else:
+  print str(numPass) + "tests passed out of " + str(numTests)
 
 print " "
