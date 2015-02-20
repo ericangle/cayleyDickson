@@ -17,11 +17,6 @@ def alg(nums):
     if powerOfTwo != int(powerOfTwo):
       print "number list must be a length that is a power of 2"
       return 0
-    elif len(nums) == 2:
-      temp = list()
-      temp.append(nums[0])
-      temp.append(nums[1])
-      return temp
     else:
       temp = list()
       temp.append(alg(nums[:len(nums)/2]))
