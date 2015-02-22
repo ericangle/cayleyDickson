@@ -7,6 +7,7 @@
 import algebra
 
 print " "
+print "Testing algebra.py"
 
 numPass = 0
 numTests = 0

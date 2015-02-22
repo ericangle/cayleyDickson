@@ -1,6 +1,8 @@
 import rotation
 from math import *
 
+print "Testing rotation.py"
+
 def testComps(accept,compare):
   numPass = 0
   for i in xrange(3):
