@@ -11,9 +11,3 @@ def rotate(vec,T,n):
   R = algebra.alg([cosHT, sinHT*n[0], sinHT*n[1], sinHT*n[2]])
   Q = algebra.mult(R,algebra.mult(Qvec,algebra.conj(R)))
   return [Q[0][1],Q[1][0],Q[1][1]]
-
-n = [1.0,1.0,1.0]
-V = [1.0,0.0,0.0]
-V_rotated = rotate(V,2.0*pi/3.0,n)
-
-print V_rotated
