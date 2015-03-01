@@ -1,9 +1,3 @@
-# TO DO
-# 1. All functions should check that list1.len ==
-#    list2.len, or should promote the shorter one
-#    to the length of the longer one, i.e. complex
-#    becomes a quaternion, octonion, etc.
-
 import math
 
 # Returns list nums as nested lists as

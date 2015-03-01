@@ -1,9 +1,3 @@
-# TO DO
-# 1. Multiplication for oct
-# 2. Division for oct
-# 3. Can I make the tests recursive as in the
-#    algebra.alg function?
-
 import algebra
 
 print " "
