@@ -1,7 +1,7 @@
 from algebra import Algebra
 
-print " "
-print "Testing Algebra.py"
+print(" ")
+print("Testing Algebra.py")
 
 numPass = 0
 numTests = 0
@@ -36,9 +36,9 @@ nTrueR = nTrueR + 1*(R1 / R2 == Algebra(1/2))
 
 # Results
 if (nTrueR == nTestsR):
-  print "Real tests pass: " + str(nTrueR) + " passed out of " + str(nTestsR)
+  print("Real tests pass: ",str(nTrueR)," passed out of ",str(nTestsR))
 else:
-  print "Real tests fail: " + str(nTrueR) + " passed out of " + str(nTestsR)
+  print("Real tests fail: ",str(nTrueR)," passed out of ",str(nTestsR))
 
 numPass = numPass + nTrueR
 numTests = numTests + nTestsR
@@ -73,9 +73,9 @@ nTrueC = nTrueC + 1*(C1 / C2 == Algebra(11.0/25.0,2.0/25.0))
 
 # Results
 if (nTrueC == nTestsC):
-  print "Complex tests pass: " + str(nTrueC) + " passed out of " + str(nTestsC)
+  print("Complex tests pass: ",str(nTrueC)," passed out of ",str(nTestsC))
 else:
-  print "Complex tests fail: " + str(nTrueC) + " passed out of " + str(nTestsC)
+  print("Complex tests fail: ",str(nTrueC)," passed out of ",str(nTestsC))
   
 numPass = numPass + nTrueC
 numTests = numTests + nTestsC
@@ -112,8 +112,8 @@ nE2 = Algebra([0,0,-1,0])
 E3  = Algebra([0,0,0,1])
 nE3 = Algebra([0,0,0,-1])
 
-for i in xrange(4):
-  for j in xrange(4):
+for i in range(4):
+  for j in range(4):
     q1 = Algebra([(i==0)*1,(i==1)*1,(i==2)*1,(i==3)*1])    
     q2 = Algebra([(j==0)*1,(j==1)*1,(j==2)*1,(j==3)*1])
     q3 = q1 * q2
@@ -141,9 +141,9 @@ nTrueQ = nTrueQ + (Q1 / Q2 == Algebra([(5+12+21+32)/modSqQ2,(-6+10-24+28)/modSqQ
 
 # Results
 if (nTrueQ == nTestsQ):
-  print "Quaternion tests pass: " + str(nTrueQ) + " passed out of " + str(nTestsQ)
+  print("Quaternion tests pass: ",str(nTrueQ)," passed out of ",str(nTestsQ))
 else:
-  print "Quaternion tests fail: " + str(nTrueQ) + " passed out of " + str(nTestsQ)
+  print("Quaternion tests fail: ",str(nTrueQ)," passed out of ",str(nTestsQ))
 
 numPass = numPass + nTrueQ
 numTests = numTests + nTestsQ
@@ -178,16 +178,16 @@ nTrueO = nTrueO + (O1.norm() == pow(sum (pow(i,2.0) for i in range(1,8+1)),0.5) 
 
 # Results
 if (nTrueO == nTestsO):
-  print "Octonion tests pass: " + str(nTrueO) + " passed out of " + str(nTestsO)
+  print("Octonion tests pass: ",str(nTrueO)," passed out of ",str(nTestsO))
 else:
-  print "Octonion tests fail: " + str(nTrueO) + " passed out of " + str(nTestsO)
+  print("Octonion tests fail: ",str(nTrueO)," passed out of ",str(nTestsO))
 
 numPass = numPass + nTrueO
 numTests = numTests + nTestsO
 
 if (numPass == numTests):
-  print "All tests passed."
+  print("All tests passed.")
 else:
-  print str(numPass) + " tests passed out of " + str(numTests)
+  print(str(numPass)," tests passed out of ",str(numTests))
 
-print " "
+print(" ")

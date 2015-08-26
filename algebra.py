@@ -19,22 +19,22 @@ class Algebra:
         else:
           powerOfTwo = math.log(len(a))/math.log(2)
           if powerOfTwo == int(powerOfTwo):
-            self.a = Algebra(a[:len(a)/2])
-            self.b = Algebra(a[len(a)/2:])
+            self.a = Algebra(a[:len(a)//2])
+            self.b = Algebra(a[len(a)//2:])
             self.isReal = False
           else:
-            print "error: ..."
+            print("error: ...")
             exit()
       else:
         # a is an Algebra or something else
         # which isn't allowed
-        print "error: ..."
+        print("error: ...")
         exit()
 
     # b != None
     else:
       if type(a) == list:
-        print "error"
+        print("error")
         exit()
       else:
         #if len(a) == len(b):
@@ -97,11 +97,22 @@ class Algebra:
 
   # override division
   # a / b = a b* (1/(bb*))
-  def __div__(self,other):
+  def __floordiv__(self,other):
     if self.isReal:
       return Algebra(self.a / other.a)
     else:
-      return self * other.conj() * Algebra([1.0/pow(other.norm(),2.0)] + [0.0 for i in xrange(len(other)-1)])   
+      return self * other.conj() * Algebra([1.0/pow(other.norm(),2.0)] + [0.0 for i in range(len(other)-1)])   
+  def __truediv__(self,other):
+    if self.isReal:
+      return Algebra(float(self.a) / float(other.a))
+    else:
+      return self * other.conj() * Algebra([1.0/pow(other.norm(),2.0)] + [0.0 for i in range(len(other)-1)])     
+  def __div__(self,other):
+    if self.isReal:
+      return Algebra(float(self.a) / float(other.a))
+    else:
+      return self * other.conj() * Algebra([1.0/pow(other.norm(),2.0)] + [0.0 for i in range(len(other)-1)])   
+
   # norm / modulus
   def norm(self):
     if self.isReal:

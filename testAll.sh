@@ -1,4 +1,4 @@
 #!/bin/bash
 
-python testAlgebra.py
-python testRotation.py
+python3 testAlgebra.py
+python3 testRotation.py

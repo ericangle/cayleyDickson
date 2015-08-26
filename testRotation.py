@@ -2,11 +2,11 @@ import rotation
 from math import *
 from numpy import *
 
-print "Testing rotation.py"
+print("Testing rotation.py")
 
 def testComps(accept,compare):
   numPass = 0
-  for i in xrange(3):
+  for i in range(3):
     if abs(accept[i]-compare[i]) < 1.0e-6:
       numPass = numPass + 1
   if numPass == 3:
@@ -36,4 +36,4 @@ T = 2.0*pi/3.0
 
 #print R.dot(V)
 
-print testComps(rotation.rotate(V,2.0*pi/3.0,n),[0.0,1.0,0.0])
+print(testComps(rotation.rotate(V,2.0*pi/3.0,n),[0.0,1.0,0.0]))

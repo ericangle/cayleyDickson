@@ -7,7 +7,7 @@ from math import *
 def rotate(vec,T,n):
   # Normalize n
   nMag = sqrt(pow(n[0],2.0) + pow(n[1],2.0) + pow(n[2],2.0))
-  for i in xrange(3):
+  for i in range(3):
     n[i] = n[i]/nMag
 
   # Embed vec in a quaternion Q
