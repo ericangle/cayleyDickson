@@ -22,4 +22,4 @@ def rotate(vec,T,n):
   Q = R * ( Qvec * R.conj() )
 
   # Last 3 elements of Q are vec rotated
-  return [Q.a.b.a,Q.b.a.a,Q.b.b.a]
+  return Q.asList()[1:]
