@@ -1,4 +1,4 @@
-import algebra
+from algebra import Algebra
 from math import *
 
 # vec  3d vector to rotate
@@ -11,15 +11,15 @@ def rotate(vec,T,n):
     n[i] = n[i]/nMag
 
   # Embed vec in a quaternion Q
-  Qvec = algebra.alg([0.0,vec[0],vec[1],vec[2]])
+  Qvec = Algebra([0.0,vec[0],vec[1],vec[2]])
 
   # Construct rotation quaternion R
   cosHT = cos(0.5*T)
   sinHT = sin(0.5*T)
-  R = algebra.alg([cosHT, sinHT*n[0], sinHT*n[1], sinHT*n[2]])
+  R = Algebra([cosHT, sinHT*n[0], sinHT*n[1], sinHT*n[2]])
 
   # Rotate Qvec
-  Q = algebra.mult(R,algebra.mult(Qvec,algebra.conj(R)))
+  Q = R * ( Qvec * R.conj() )
 
   # Last 3 elements of Q are vec rotated
-  return [Q[0][1],Q[1][0],Q[1][1]]
+  return [Q.a.b.a,Q.b.a.a,Q.b.b.a]
