@@ -1,116 +1,124 @@
 import math
 
-# Returns list nums as nested lists as
-# in the Cayley Dickson construction
-def alg(nums):
-  if len(nums) == 1:
-    return nums[0]
-  else:
-    # powerOfTwo = 1,2,3,... = complex,quaternion,octonion,...
-    powerOfTwo = math.log(len(nums))/math.log(2)
-    if powerOfTwo != int(powerOfTwo):
-      print "number list must be a length that is a power of 2"
-      return 0
+# First attempt: assume all operations are done with Algebras
+# of the same length
+
+class Algebra:
+  # constructor
+  def __init__(self,a,b=None):
+    if b is None:
+      if type(a) == float or type(a) == int:
+        self.a = a
+        self.b = b
+        self.isReal = True
+      elif type(a) == list:
+        if len(a) == 1:
+          self.a = a[0]
+          self.b = b
+          self.isReal = True
+        else:
+          powerOfTwo = math.log(len(a))/math.log(2)
+          if powerOfTwo == int(powerOfTwo):
+            self.a = Algebra(a[:len(a)/2])
+            self.b = Algebra(a[len(a)/2:])
+            self.isReal = False
+          else:
+            print "error: ..."
+            exit()
+      else:
+        # a is an Algebra or something else
+        # which isn't allowed
+        print "error: ..."
+        exit()
+
+    # b != None
     else:
-      temp = list()
-      temp.append(alg(nums[:len(nums)/2]))
-      temp.append(alg(nums[len(nums)/2:]))
-      return temp
+      if type(a) == list:
+        print "error"
+        exit()
+      else:
+        #if len(a) == len(b):
+        if type(a) == int or type(a) == float:
+          self.a = Algebra(a)
+          self.b = Algebra(b)
+          self.isReal = False
+        else:
+          self.a = a
+          self.b = b
+          self.isReal = False
+     # else:
+     #   print "error: .."
+     #   exit()
 
-# Calculates total length of a nested list
-def listLen(myList):
-  if isinstance(myList, (int, long, float)):
-    return 1
-  else:
-    sum = 0
-    for i in xrange(len(myList)):
-      sum = sum + listLen(myList[i])
-    return sum
+#  def isReal(self):
+#    return (type(self.a) == int or type(self.a) == float) and (self.b == None)
 
-# Pretty print
-def prettyPrint(myList):
-  output = "[ "
-  tempList = tempPrettyPrint(myList)
-  for i in xrange(len(tempList)):
-    output = output + tempList[i] + " "
-  output = output + "]"
-  print output
-  return 0
-
-def tempPrettyPrint(myList):
-  if isinstance(myList, (int, long, float)):
-    return str(myList)
-  else:
-    output = ""
-    for i in xrange(len(myList)):
-      output = output + tempPrettyPrint(myList[i])
-    return output
-
-# Addition
-# (a,b)+(c,d) = (a+c,b+d)
-def add(list1,list2):
-  if listLen(list1) == 1:
-    return list1 + list2
-  else:
-    return [add(list1[i],list2[i]) for i in xrange(len(list1))]
-
-# Subtraction
-# (a,b)-(c,d) = (a-c,b-d)
-def sub(list1,list2):
-  if listLen(list1) == 1:
-    return list1 - list2
-  else:
-    return [sub(list1[i],list2[i]) for i in xrange(len(list1))]
-
-# Multiplication
-# (a,b)(c,d) = (ac-d*b,da+bc*)
-def mult(list1,list2):
-  if listLen(list1) == 1:
-    return list1*list2
-  else:
-    total = list()
-    a = list1[0]
-    b = list1[1]
-    c = list2[0]
-    d = list2[1]
-    total.append(sub(mult(a,c),mult(conj(d),b)))
-    total.append(add(mult(d,a),mult(b,conj(c))))
-    return total
-
-# Modulus
-# |a| = (a a*)^1/2
-def mod(myList):
-  if isinstance(myList, (int, long, float)):
-    return myList
-  else:
-    sum = 0
-    for i in xrange(len(myList)):
-      sum = sum + pow(mod(myList[i]),2.0)
-    return pow(sum,0.5)
-
-# Division
-# a / b = ab* / (bb*)
-def div(a,b):
-  invBBconj = list()
-  invBBconj.append(1.0/pow(mod(b),2.0))
-  for i in range(1,listLen(a)):
-    invBBconj.append(0.0)
-  return mult(mult(a,conj(b)),alg(invBBconj))
-
-# Conjugation
-# (a,b)* = (a*,-b)
-def conj(myList):
-  if listLen(myList) == 1:
-    return myList
-  else:
-    if listLen(myList) == 2:
-      zeroes = 0.0
+  # override equality
+  def __eq__(self,other):
+    if self.isReal:
+      return self.a == other.a
     else:
-      zeroes = list()
-      for i in xrange(listLen(myList)/2):
-        zeroes.append(0.0)
-      zeroes = alg(zeroes)
-    result = list()
-    result.append(conj(myList[0]))
-    result.append(sub(zeroes,myList[1]))
-    return result
+      return self.a == other.a and self.b == other.b
+
+  # override length
+  def __len__(self):
+    if self.isReal:
+      return 1
+    else:
+      return len(self.a) + len(self.b)
+
+  def neg(self):
+    if self.isReal:
+      return Algebra(-self.a)
+    else:
+      return Algebra(self.a.neg(),self.b.neg())
+    
+  # override addition
+  # (a,b)+(c,d) = (a+c,b+d)
+  def __add__(self,other):
+    if self.isReal:
+      return Algebra(self.a + other.a)
+    else:
+      return Algebra(self.a + other.a, self.b + other.b)
+
+  # override subtraction
+  # (a,b)-(c,d) = (a-c,b-d)
+  def __sub__(self,other):
+    return self + other.neg()
+
+  # override multiplication
+  # (a,b)(c,d) = (ac-d*b,da+bc*)
+  def __mul__(self,other):
+    if self.isReal:
+      return Algebra(self.a * other.a)
+    else:
+      return Algebra(self.a * other.a - other.b.conj() * self.b,
+                     other.b * self.a + self.b * other.a.conj())
+
+  # override division
+  # a / b = a b* (1/(bb*))
+  def __div__(self,other):
+    if self.isReal:
+      return Algebra(self.a / other.a)
+    else:
+      return self * other.conj() * Algebra([1.0/pow(other.norm(),2.0)] + [0.0 for i in xrange(len(other)-1)])   
+  # norm / modulus
+  def norm(self):
+    if self.isReal:
+      return abs(self.a)
+    else:
+      return pow((self * self.conj()).asList()[0],0.5)
+
+  # Conjugation
+  # (a,b)* = (a*,-b)
+  def conj(self):
+    if self.isReal:
+      return self
+    else:
+      return Algebra(self.a.conj(),self.b.neg())
+
+  def asList(self):
+    if self.isReal:
+      return [self.a]
+    else:
+      return self.a.asList() + self.b.asList()
