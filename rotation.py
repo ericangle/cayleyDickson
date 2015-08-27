@@ -10,7 +10,7 @@ def rotate(vec,T,n):
   for i in range(3):
     n[i] = n[i]/nMag
 
-  # Embed vec in a quaternion Q
+  # Embed vec in a quaternion Qvec
   Qvec = Algebra([0.0,vec[0],vec[1],vec[2]])
 
   # Construct rotation quaternion R
@@ -18,7 +18,7 @@ def rotate(vec,T,n):
   sinHT = sin(0.5*T)
   R = Algebra([cosHT, sinHT*n[0], sinHT*n[1], sinHT*n[2]])
 
-  # Rotate Qvec
+  # Rotate Qvec to Q
   Q = R * ( Qvec * R.conj() )
 
   # Last 3 elements of Q are vec rotated

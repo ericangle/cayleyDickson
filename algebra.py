@@ -50,9 +50,6 @@ class Algebra:
      #   print "error: .."
      #   exit()
 
-#  def isReal(self):
-#    return (type(self.a) == int or type(self.a) == float) and (self.b == None)
-
   # override equality
   def __eq__(self,other):
     if self.isReal:
@@ -67,6 +64,7 @@ class Algebra:
     else:
       return len(self.a) + len(self.b)
 
+  # Negation
   def neg(self):
     if self.isReal:
       return Algebra(-self.a)
@@ -112,6 +110,15 @@ class Algebra:
       return Algebra(float(self.a) / float(other.a))
     else:
       return self * other.conj() * Algebra([1.0/pow(other.norm(),2.0)] + [0.0 for i in range(len(other)-1)])   
+  # commutator
+  # [a,b] = a * b - b * a
+  def commutator(self,other):
+    return self * other - other * self
+
+  # associator
+  # [x, y, z] = (x * y) * z - x * (y * z)
+  def associator(self,other1,other2):
+    return (self * other1) * other2 - self * (other1 * other2)
 
   # norm / modulus
   def norm(self):
