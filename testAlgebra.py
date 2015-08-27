@@ -87,35 +87,35 @@ numTests = numTests + nTestsC
 nTrueQ = 0
 nTestsQ = 5 + 4*4
 
-Q1 = Algebra([1,2,3,4])
-Q2 = Algebra([5,6,7,8])
+Q1 = Algebra(1,2,3,4)
+Q2 = Algebra(5,6,7,8)
 
 # Test 1: Addition
-nTrueQ = nTrueQ + (Q1 + Q2 == Algebra([1+5,2+6,3+7,4+8]))
+nTrueQ = nTrueQ + (Q1 + Q2 == Algebra(1+5,2+6,3+7,4+8))
 
 # Test 2: Subtraction
-nTrueQ = nTrueQ + (Q1 - Q2 == Algebra([1-5,2-6,3-7,4-8]))
+nTrueQ = nTrueQ + (Q1 - Q2 == Algebra(1-5,2-6,3-7,4-8))
 
 # Test 3: Conjugate
-nTrueQ = nTrueQ + (Q1.conj() == Algebra([1,-2,-3,-4]))
+nTrueQ = nTrueQ + (Q1.conj() == Algebra(1,-2,-3,-4))
 
 # Test 4: Modulus
 nTrueQ = nTrueQ + (Q1.norm() == pow(sum (pow(i,2.0) for i in range(1,4+1)),0.5))
 
 # Test 5: Multiplication
-E0  = Algebra([1,0,0,0])
-nE0 = Algebra([-1,0,0,0])
-E1  = Algebra([0,1,0,0])
-nE1 = Algebra([0,-1,0,0])
-E2  = Algebra([0,0,1,0])
-nE2 = Algebra([0,0,-1,0])
-E3  = Algebra([0,0,0,1])
-nE3 = Algebra([0,0,0,-1])
+E0  = Algebra(1,0,0,0)
+nE0 = Algebra(-1,0,0,0)
+E1  = Algebra(0,1,0,0)
+nE1 = Algebra(0,-1,0,0)
+E2  = Algebra(0,0,1,0)
+nE2 = Algebra(0,0,-1,0)
+E3  = Algebra(0,0,0,1)
+nE3 = Algebra(0,0,0,-1)
 
 for i in range(4):
   for j in range(4):
-    q1 = Algebra([(i==0)*1,(i==1)*1,(i==2)*1,(i==3)*1])    
-    q2 = Algebra([(j==0)*1,(j==1)*1,(j==2)*1,(j==3)*1])
+    q1 = Algebra((i==0)*1,(i==1)*1,(i==2)*1,(i==3)*1)    
+    q2 = Algebra((j==0)*1,(j==1)*1,(j==2)*1,(j==3)*1)
     q3 = q1 * q2
 
     # 3 Tests: i,j = 1,2,3
@@ -123,10 +123,10 @@ for i in range(4):
       nTrueQ = nTrueQ + (q3 == nE0)
     # 4 Tests: i = 0, j = 0,1,2,3
     if (i == 0):
-      nTrueQ = nTrueQ + (q3 == Algebra([(j==0)*1,(j==1)*1,(j==2)*1,(j==3)*1]))
+      nTrueQ = nTrueQ + (q3 == Algebra((j==0)*1,(j==1)*1,(j==2)*1,(j==3)*1))
     # 3 Tests: j = 0, i = 1,2,3
     elif (j == 0):
-      nTrueQ = nTrueQ + (q3 == Algebra([(i==0)*1,(i==1)*1,(i==2)*1,(i==3)*1]))
+      nTrueQ = nTrueQ + (q3 == Algebra((i==0)*1,(i==1)*1,(i==2)*1,(i==3)*1))
     # 6 Tests: off diag with i and j not 0
     nTrueQ = nTrueQ + (i == 2 and j == 1)*(q3 == nE3)
     nTrueQ = nTrueQ + (i == 3 and j == 1)*(q3 == E2)
@@ -155,17 +155,17 @@ numTests = numTests + nTestsQ
 nTrueO = 0
 nTestsO = 4
 
-O1 = Algebra([1,2,3,4,5,6,7,8])
-O2 = Algebra([9,10,11,12,13,14,15,16])
+O1 = Algebra(1,2,3,4,5,6,7,8)
+O2 = Algebra(9,10,11,12,13,14,15,16)
 
 # Test 1: Addition
-nTrueO = nTrueO + (O1 + O2 == Algebra([1+9,2+10,3+11,4+12,5+13,6+14,7+15,8+16]))
+nTrueO = nTrueO + (O1 + O2 == Algebra(1+9,2+10,3+11,4+12,5+13,6+14,7+15,8+16))
 
 # Test 2: Subtraction
-nTrueO = nTrueO + (O1 - O2 == Algebra([1-9,2-10,3-11,4-12,5-13,6-14,7-15,8-16]))
+nTrueO = nTrueO + (O1 - O2 == Algebra(1-9,2-10,3-11,4-12,5-13,6-14,7-15,8-16))
 
 # Test 3: Conjugate
-nTrueO = nTrueO + (O1.conj() == Algebra([1,-2,-3,-4,-5,-6,-7,-8]))
+nTrueO = nTrueO + (O1.conj() == Algebra(1,-2,-3,-4,-5,-6,-7,-8))
 
 # Test 4: Modulus
 nTrueO = nTrueO + (O1.norm() == pow(sum (pow(i,2.0) for i in range(1,8+1)),0.5) )
