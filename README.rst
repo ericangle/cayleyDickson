@@ -1,7 +1,9 @@
 cayleyDickson
 =============
 
-Implementation of the Cayley–Dickson algebras using the `Cayley-Dickson construction <https://en.wikipedia.org/wiki/Cayley–Dickson_construction>`__ , including (but not limited to) the real and complex numbers, quaternions, octonions, and sedenions.
+Implementation of the Cayley–Dickson algebras using the `Cayley-Dickson construction <https://en.wikipedia.org/wiki/Cayley–Dickson_construction>`__, including (but not limited to) the real and complex numbers, quaternions, octonions, and sedenions.
+
+.. math:: (a + b)^2 = a^2 + 2ab + b^2
 
 .. math::
 
