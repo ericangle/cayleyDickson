@@ -1,3 +1,6 @@
+.. role:: raw-math(raw)
+    :format: latex html
+
 cayleyDickson
 =============
 
@@ -8,6 +11,8 @@ Implementation of the Cayley–Dickson algebras using the `Cayley-Dickson constr
 .. math::
     
     \sin{a + b}
+
+    :raw-math:`$$ \frac{s}{\sqrt{N}} $$`
 
 conjugation
 
