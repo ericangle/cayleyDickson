@@ -154,3 +154,7 @@ class Algebra:
       return [self.a]
     else:
       return self.a.asList() + self.b.asList()
+
+  # overriding string
+  def __str__(self):
+    return str(self.asList())
