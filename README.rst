@@ -5,7 +5,7 @@ Implementation of the Cayley–Dickson algebras using the `Cayley-Dickson constr
 
 .. math::
 
-   \\frac{ \sum_{t=0}^{N}f(t,k) }{N}
+   \sin{a + b}
 
 conjugation
 
