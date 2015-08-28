@@ -6,13 +6,23 @@ cayleyDickson
 
 Implementation of the Cayley–Dickson algebras using the `Cayley-Dickson construction <https://en.wikipedia.org/wiki/Cayley–Dickson_construction>`__, including (but not limited to) the real and complex numbers, quaternions, octonions, and sedenions.
 
-In this construction, the next algebra in the sequence is an ordered pair of the previous algebra in the sequence, with multiplication defined by
+In this construction, starting with the real numbers, the next algebra in the sequence is an ordered pair of the previous algebra in the sequence, with multiplication defined by
 
-    (a,b)(c,d) = (ac-d*b,da+bc*)
+(a,b)(c,d) = (ac-d*b,da+bc*)
 
-where conjugation is defined by
+where * denotes conjugation, defined by
 
-    (a,b)* = (a*,-b)
+(a,b)* = (a*,-b)
+
+For complex numbers, composed of two real numbers, multiplication and conjugation reduce to the familiar
+
+(a,b)(c,d) = (ac-db,da+bc)
+
+and
+
+(a,b)* = (a,-b)
+
+respectively.
 
 Real Example
 ------------------
