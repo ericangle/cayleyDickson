@@ -1,11 +1,11 @@
 cayleyDickson
 =============
 
-Implementation of the Cayley–Dickson algebras using the Cayley-Dickson construction <https://en.wikipedia.org/wiki/Cayley–Dickson_construction>`__ , including (but not limited to) the real and complex numbers, quaternions, octonions, and sedenions.
+Implementation of the Cayley–Dickson algebras using the `Cayley-Dickson construction <https://en.wikipedia.org/wiki/Cayley–Dickson_construction>`__ , including (but not limited to) the real and complex numbers, quaternions, octonions, and sedenions.
 
 .. math::
 
-   \frac{ \sum_{t=0}^{N}f(t,k) }{N}
+   \\frac{ \sum_{t=0}^{N}f(t,k) }{N}
 
 conjugation
 
