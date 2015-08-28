@@ -6,8 +6,8 @@ Implementation of the Cayley–Dickson algebras using the `Cayley-Dickson constr
 .. math:: (a + b)^2 = a^2 + 2ab + b^2
 
 .. math::
-
-   \sin{a + b}
+    
+    \sin{a + b}
 
 conjugation
 
