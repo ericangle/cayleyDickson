@@ -117,3 +117,8 @@ Octonion Example
     >>> O3=alg(0,1,0,1,0,1,0,1)
     >>> print(O1.associator(O2,O3))
     [0, 64, -192, 64, 64, 0, 128, -128]
+
+Run Tests
+------------------
+
+To run the tests, run the script testAll.sh.

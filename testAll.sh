@@ -1,4 +1,5 @@
 #!/bin/bash
 
-python3 testAlgebra.py
-python3 testRotation.py
+py.test --genscript=mypytestscript
+
+python3 mypytestscript testAlgebra.py testRotation.py

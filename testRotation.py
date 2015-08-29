@@ -4,19 +4,18 @@ from numpy import *
 
 print("Testing rotation.py")
 
-def testComps(accept,compare):
-  numPass = 0
-  for i in range(3):
-    if abs(accept[i]-compare[i]) < 1.0e-6:
-      numPass = numPass + 1
-  if numPass == 3:
-    return "pass"
-  else:
-    return "fail"
-
 n = [1.0,1.0,1.0]
 V = [1.0,0.0,0.0]
 T = 2.0*pi/3.0
+
+def test_rotate():
+  rotatedCalc = rotation.rotate(V,2.0*pi/3.0,n)
+  rotatedAccept = [0.0,1.0,0.0]
+  for i in range(len(rotatedCalc)):
+    assert abs(rotatedCalc[i] - rotatedAccept[i]) < 1.0e-6
+
+
+
 #print rotation.rotate(V,T,n)
 
 #dim = 3
@@ -35,5 +34,3 @@ T = 2.0*pi/3.0
 #R = sum(linalg.matrix_power(total,i)/factorial(i) for i in xrange(100))
 
 #print R.dot(V)
-
-print(testComps(rotation.rotate(V,2.0*pi/3.0,n),[0.0,1.0,0.0]))
