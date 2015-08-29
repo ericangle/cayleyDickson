@@ -1,49 +1,51 @@
 from algebra import Algebra as alg
+import numpy as np
 
 R1 = alg(1)
 R2 = alg(2)
 
 def test_real_addition():
-  assert R1 + R2 == alg(1+2)
+  assert R1 + R2 == alg(R1.a + R2.a)
 
 def test_real_subtraction():
-  assert R1 - R2 == alg(1-2)
+  assert R1 - R2 == alg(R1.a - R2.a)
 
 def test_real_conjugation():
   assert R1.conj() == R1
 
 def test_real_negation():
-  assert R1.neg() == alg(-1)
+  assert R1.neg() == alg(-R1.a)
 
 def test_real_norm():
-  assert R1.norm() == 1
+  assert R1.norm() == abs(R1.a)
 
 def test_real_multiplication():
-  assert R1 * R2 == alg(1*2)
+  assert R1 * R2 == alg(R1.a * R2.a)
 
 def test_real_division():
-  assert R1 / R2 == alg(1/2)
+  assert R1 / R2 == alg(R1.a / R2.a)
 
 C1 = alg(1,2)
 C2 = alg(3,4)
 
 def test_complex_addition():
-  assert C1 + C2 == alg(1+3,2+4)
+  assert C1 + C2 == alg(C1.a.a + C2.a.a,C1.b.a + C2.b.a)
 
 def test_complex_subtraction():
-  assert C1 - C2 == alg(1-3,2-4)
+  assert C1 - C2 == alg(C1.a.a - C2.a.a,C1.b.a - C2.b.a)
 
 def test_complex_conjugation():
-  assert C1.conj() == alg(1,-2)
+  assert C1.conj() == alg(C1.a.a,-C1.b.a)
 
 def test_complex_negation():
-  assert C1.neg() == alg(-1,-2)
+  assert C1.neg() == alg(-C1.a.a,-C1.b.a)
 
 def test_complex_norm():
-  assert C1.norm() == pow(sum (pow(i,2.0) for i in range(1,2+1)),0.5)
+  assert C1.norm() == pow(sum([pow(i,2.0) for i in C1.asList()]),0.5)
 
 def test_complex_multiplication():
-  assert C1 * C2 == alg(1*3-2*4,1*4+2*3)
+  assert C1 * C2 == alg(C1.a.a * C2.a.a - C1.b.a * C2.b.a,
+                        C1.a.a * C2.b.a + C1.b.a * C2.a.a)
 
 def test_complex_division():
   assert C1 / C2 == alg(11.0/25.0,2.0/25.0)
@@ -67,23 +69,24 @@ def test_quaternion_norm():
   assert Q1.norm() == pow(sum (pow(i,2.0) for i in range(1,4+1)),0.5)
 
 def test_quaternion_multiplication():
-  E = [alg(1,0,0,0),alg(0,1,0,0),alg(0,0,1,0),alg(0,0,0,1)]
-  assert E[0] * E[0] == E[0]
-  assert E[0] * E[1] == E[1]
-  assert E[0] * E[2] == E[2]
-  assert E[0] * E[3] == E[3]
-  assert E[1] * E[0] == E[1]
-  assert E[1] * E[1] == E[0].neg()
-  assert E[1] * E[2] == E[3]
-  assert E[1] * E[3] == E[2].neg()
-  assert E[2] * E[0] == E[2]
-  assert E[2] * E[1] == E[3].neg()
-  assert E[2] * E[2] == E[0].neg()
-  assert E[2] * E[3] == E[1]
-  assert E[3] * E[0] == E[3]
-  assert E[3] * E[1] == E[2]
-  assert E[3] * E[2] == E[1].neg()
-  assert E[3] * E[3] == E[0].neg()
+  basis = [alg(1,0,0,0),alg(0,1,0,0),alg(0,0,1,0),alg(0,0,0,1)]
+
+  assert basis[0] * basis[0] == basis[0]
+  assert basis[0] * basis[1] == basis[1]
+  assert basis[0] * basis[2] == basis[2]
+  assert basis[0] * basis[3] == basis[3]
+  assert basis[1] * basis[0] == basis[1]
+  assert basis[1] * basis[1] == basis[0].neg()
+  assert basis[1] * basis[2] == basis[3]
+  assert basis[1] * basis[3] == basis[2].neg()
+  assert basis[2] * basis[0] == basis[2]
+  assert basis[2] * basis[1] == basis[3].neg()
+  assert basis[2] * basis[2] == basis[0].neg()
+  assert basis[2] * basis[3] == basis[1]
+  assert basis[3] * basis[0] == basis[3]
+  assert basis[3] * basis[1] == basis[2]
+  assert basis[3] * basis[2] == basis[1].neg()
+  assert basis[3] * basis[3] == basis[0].neg()
 
 def test_quaternion_division():
   modSqQ2 = pow(5.0,2.0) + pow(6.0,2.0) + pow(7.0,2.0) + pow(8.0,2.0)
