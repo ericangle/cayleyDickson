@@ -1,13 +1,7 @@
 from algebra import Algebra as alg
 
-print(" ")
-print("Testing algebra.py")
-
 R1 = alg(1)
 R2 = alg(2)
-
-C1 = alg(1,2)
-C2 = alg(3,4)
 
 def test_real_addition():
   assert R1 + R2 == alg(1+2)
@@ -29,6 +23,9 @@ def test_real_multiplication():
 
 def test_real_division():
   assert R1 / R2 == alg(1/2)
+
+C1 = alg(1,2)
+C2 = alg(3,4)
 
 def test_complex_addition():
   assert C1 + C2 == alg(1+3,2+4)
@@ -70,26 +67,23 @@ def test_quaternion_norm():
   assert Q1.norm() == pow(sum (pow(i,2.0) for i in range(1,4+1)),0.5)
 
 def test_quaternion_multiplication():
-  E0 = alg(1,0,0,0)
-  E1 = alg(0,1,0,0)
-  E2 = alg(0,0,1,0)
-  E3 = alg(0,0,0,1)
-  assert E0 * E0 == E0
-  assert E0 * E1 == E1
-  assert E0 * E2 == E2
-  assert E0 * E3 == E3
-  assert E1 * E0 == E1
-  assert E1 * E1 == E0.neg()
-  assert E1 * E2 == E3
-  assert E1 * E3 == E2.neg()
-  assert E2 * E0 == E2
-  assert E2 * E1 == E3.neg()
-  assert E2 * E2 == E0.neg()
-  assert E2 * E3 == E1
-  assert E3 * E0 == E3
-  assert E3 * E1 == E2
-  assert E3 * E2 == E1.neg()
-  assert E3 * E3 == E0.neg()
+  E = [alg(1,0,0,0),alg(0,1,0,0),alg(0,0,1,0),alg(0,0,0,1)]
+  assert E[0] * E[0] == E[0]
+  assert E[0] * E[1] == E[1]
+  assert E[0] * E[2] == E[2]
+  assert E[0] * E[3] == E[3]
+  assert E[1] * E[0] == E[1]
+  assert E[1] * E[1] == E[0].neg()
+  assert E[1] * E[2] == E[3]
+  assert E[1] * E[3] == E[2].neg()
+  assert E[2] * E[0] == E[2]
+  assert E[2] * E[1] == E[3].neg()
+  assert E[2] * E[2] == E[0].neg()
+  assert E[2] * E[3] == E[1]
+  assert E[3] * E[0] == E[3]
+  assert E[3] * E[1] == E[2]
+  assert E[3] * E[2] == E[1].neg()
+  assert E[3] * E[3] == E[0].neg()
 
 def test_quaternion_division():
   modSqQ2 = pow(5.0,2.0) + pow(6.0,2.0) + pow(7.0,2.0) + pow(8.0,2.0)
@@ -110,11 +104,9 @@ def test_octonion_norm():
 def test_octonion_norm():
   assert O1.norm() == pow(sum (pow(i,2.0) for i in range(1,8+1)),0.5)
 
-#def test_octonion_norm():
-# Test 5: Multiplication
+#def test_octonion_multiplication():
 # add 8x8 mult table
 
-#def test_octonion_norm():
+#def test_octonion_division():
 # Test 6: Division
 #nTrueO = nTrueO + (alg.div(O1,O2) == alg.alg(place,holder,for,now))
-
