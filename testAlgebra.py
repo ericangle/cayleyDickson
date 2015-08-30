@@ -69,24 +69,25 @@ def test_quaternion_norm():
   assert Q1.norm() == pow(sum (pow(i,2.0) for i in range(1,4+1)),0.5)
 
 def test_quaternion_multiplication():
-  basis = [alg(1,0,0,0),alg(0,1,0,0),alg(0,0,1,0),alg(0,0,0,1)]
+  # basis vectors
+  E = [alg(1,0,0,0),alg(0,1,0,0),alg(0,0,1,0),alg(0,0,0,1)]
 
-  assert basis[0] * basis[0] == basis[0]
-  assert basis[0] * basis[1] == basis[1]
-  assert basis[0] * basis[2] == basis[2]
-  assert basis[0] * basis[3] == basis[3]
-  assert basis[1] * basis[0] == basis[1]
-  assert basis[1] * basis[1] == basis[0].neg()
-  assert basis[1] * basis[2] == basis[3]
-  assert basis[1] * basis[3] == basis[2].neg()
-  assert basis[2] * basis[0] == basis[2]
-  assert basis[2] * basis[1] == basis[3].neg()
-  assert basis[2] * basis[2] == basis[0].neg()
-  assert basis[2] * basis[3] == basis[1]
-  assert basis[3] * basis[0] == basis[3]
-  assert basis[3] * basis[1] == basis[2]
-  assert basis[3] * basis[2] == basis[1].neg()
-  assert basis[3] * basis[3] == basis[0].neg()
+  assert E[0] * E[0] == E[0]
+  assert E[0] * E[1] == E[1]
+  assert E[0] * E[2] == E[2]
+  assert E[0] * E[3] == E[3]
+  assert E[1] * E[0] == E[1]
+  assert E[1] * E[1] == E[0].neg()
+  assert E[1] * E[2] == E[3]
+  assert E[1] * E[3] == E[2].neg()
+  assert E[2] * E[0] == E[2]
+  assert E[2] * E[1] == E[3].neg()
+  assert E[2] * E[2] == E[0].neg()
+  assert E[2] * E[3] == E[1]
+  assert E[3] * E[0] == E[3]
+  assert E[3] * E[1] == E[2]
+  assert E[3] * E[2] == E[1].neg()
+  assert E[3] * E[3] == E[0].neg()
 
 def test_quaternion_division():
   modSqQ2 = pow(5.0,2.0) + pow(6.0,2.0) + pow(7.0,2.0) + pow(8.0,2.0)
@@ -107,8 +108,49 @@ def test_octonion_norm():
 def test_octonion_norm():
   assert O1.norm() == pow(sum (pow(i,2.0) for i in range(1,8+1)),0.5)
 
-#def test_octonion_multiplication():
-# add 8x8 mult table
+def test_octonion_multiplication():
+  # basis vectors
+  E = [alg(1,0,0,0,0,0,0,0),
+       alg(0,1,0,0,0,0,0,0),
+       alg(0,0,1,0,0,0,0,0),
+       alg(0,0,0,1,0,0,0,0),
+       alg(0,0,0,0,1,0,0,0),
+       alg(0,0,0,0,0,1,0,0),
+       alg(0,0,0,0,0,0,1,0),
+       alg(0,0,0,0,0,0,0,1)]
+
+  # we are only going to fill in the upper triangular part
+  table = np.array([[0, 0, 0, 0, 0, 0, 0, 0],
+                    [0, 0, 3,-2, 5,-4,-7, 6],
+                    [0, 0, 0, 1, 6, 7,-4,-5],
+                    [0, 0, 0, 0, 7,-6, 5,-4],
+                    [0, 0, 0, 0, 0, 1, 2, 3],
+                    [0, 0, 0, 0, 0, 0,-3, 2],
+                    [0, 0, 0, 0, 0, 0, 0,-1],
+                    [0, 0, 0, 0, 0, 0, 0, 0]])
+
+  def testCase(i,j):
+    if i == 0:
+      assert E[i] * E[j] == E[j]
+    else:
+      if j == 0:
+        assert E[i] * E[j] == E[i]
+      else:
+        if i == j:
+          assert E[i] * E[j] == E[0].neg()
+        else:
+          if j > i:
+            element = table[i][j]
+          else:
+            element = -table[j][i]
+          if element > 0:
+            assert E[i] * E[j] == E[element]
+          else:
+            assert E[i] * E[j] == E[abs(element)].neg() 
+
+  for i in range(8):
+    for j in range(8):
+      testCase(i,j)
 
 #def test_octonion_division():
 # Test 6: Division
