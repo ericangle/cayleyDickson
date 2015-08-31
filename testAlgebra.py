@@ -96,6 +96,26 @@ def test_quaternion_division():
 O1 = alg(1,2,3,4,5,6,7,8)
 O2 = alg(9,10,11,12,13,14,15,16)
 
+# basis vectors
+Eoct = [alg(1,0,0,0,0,0,0,0),
+        alg(0,1,0,0,0,0,0,0),
+        alg(0,0,1,0,0,0,0,0),
+        alg(0,0,0,1,0,0,0,0),
+        alg(0,0,0,0,1,0,0,0),
+        alg(0,0,0,0,0,1,0,0),
+        alg(0,0,0,0,0,0,1,0),
+        alg(0,0,0,0,0,0,0,1)]
+
+# we are only going to fill in the upper triangular part
+multTable_oct = np.array([[0, 0, 0, 0, 0, 0, 0, 0],
+                          [0, 0, 3,-2, 5,-4,-7, 6],
+                          [0, 0, 0, 1, 6, 7,-4,-5],
+                          [0, 0, 0, 0, 7,-6, 5,-4],
+                          [0, 0, 0, 0, 0, 1, 2, 3],
+                          [0, 0, 0, 0, 0, 0,-3, 2],
+                          [0, 0, 0, 0, 0, 0, 0,-1],
+                          [0, 0, 0, 0, 0, 0, 0, 0]])
+
 def test_octonion_norm():
   assert O1 + O2 == alg(1+9,2+10,3+11,4+12,5+13,6+14,7+15,8+16)
 
@@ -109,49 +129,31 @@ def test_octonion_norm():
   assert O1.norm() == pow(sum (pow(i,2.0) for i in range(1,8+1)),0.5)
 
 def test_octonion_multiplication():
-  # basis vectors
-  E = [alg(1,0,0,0,0,0,0,0),
-       alg(0,1,0,0,0,0,0,0),
-       alg(0,0,1,0,0,0,0,0),
-       alg(0,0,0,1,0,0,0,0),
-       alg(0,0,0,0,1,0,0,0),
-       alg(0,0,0,0,0,1,0,0),
-       alg(0,0,0,0,0,0,1,0),
-       alg(0,0,0,0,0,0,0,1)]
-
-  # we are only going to fill in the upper triangular part
-  table = np.array([[0, 0, 0, 0, 0, 0, 0, 0],
-                    [0, 0, 3,-2, 5,-4,-7, 6],
-                    [0, 0, 0, 1, 6, 7,-4,-5],
-                    [0, 0, 0, 0, 7,-6, 5,-4],
-                    [0, 0, 0, 0, 0, 1, 2, 3],
-                    [0, 0, 0, 0, 0, 0,-3, 2],
-                    [0, 0, 0, 0, 0, 0, 0,-1],
-                    [0, 0, 0, 0, 0, 0, 0, 0]])
-
   def testCase(i,j):
     if i == 0:
-      assert E[i] * E[j] == E[j]
+      assert Eoct[i] * Eoct[j] == Eoct[j]
     else:
       if j == 0:
-        assert E[i] * E[j] == E[i]
+        assert Eoct[i] * Eoct[j] == Eoct[i]
       else:
         if i == j:
-          assert E[i] * E[j] == E[0].neg()
+          assert Eoct[i] * Eoct[j] == Eoct[0].neg()
         else:
           if j > i:
-            element = table[i][j]
+            element = multTable_oct[i][j]
           else:
-            element = -table[j][i]
+            element = -multTable_oct[j][i]
           if element > 0:
-            assert E[i] * E[j] == E[element]
+            assert Eoct[i] * Eoct[j] == Eoct[element]
           else:
-            assert E[i] * E[j] == E[abs(element)].neg() 
+            assert Eoct[i] * Eoct[j] == Eoct[abs(element)].neg() 
 
   for i in range(8):
     for j in range(8):
       testCase(i,j)
 
-#def test_octonion_division():
-# Test 6: Division
-#nTrueO = nTrueO + (alg.div(O1,O2) == alg.alg(place,holder,for,now))
+def test_octonion_division():
+  for i in range(8):
+    for j in range(8):
+      # this is somewhat circular, but okay for now
+      Eoct[i] / Eoct[j] == Eoct[i] * Eoct[j].conj()
