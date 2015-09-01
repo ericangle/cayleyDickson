@@ -121,4 +121,4 @@ Octonion Example
 Run Tests
 ------------------
 
-To run the tests, run the script testAll.sh.
+To run the tests, run the script testAll.sh from the parent directory.

@@ -1,11 +1,9 @@
-Algebra.py
+algebra.py
 1. All functions should check that list1.len ==
     list2.len, or should promote the shorter one
     to the length of the longer one, i.e. complex
     becomes a quaternion, octonion, etc.
 
 testAlgebra.py
-1. Multiplication for oct
-2. Division for oct
-3. Can I make the tests recursive as in the algebra.alg function?
-4. Make tests for embedding one algebra in another, such as complex in quaternion. 
+1. test basic methods, such as constructor
+2. Make tests for embedding one algebra in another, such as complex in quaternion. 
