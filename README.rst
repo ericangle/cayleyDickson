@@ -118,7 +118,7 @@ Octonion Example
     >>> print(O1.associator(O2,O3))
     [0, 64, -192, 64, 64, 0, 128, -128]
 
-Run Tests
+Tests
 ------------------
 
-To run the tests, run test/testAll.sh from the base directory.
+To run the tests, run test/testAll.sh.
