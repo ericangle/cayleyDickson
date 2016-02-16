@@ -158,3 +158,7 @@ class Algebra:
   # overriding string
   def __str__(self):
     return str(self.asList())
+
+  # overriding repr
+  def __repr__(self):
+    return 'Algebra' + str(tuple(self.asList()))
